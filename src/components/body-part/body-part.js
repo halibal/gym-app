@@ -5,10 +5,9 @@ import { Gym } from '../../assets/icons';
 import { setBodyPart } from '../../context/exercises/exercises-actions';
 
 const BodyPart = ({ item }) => {
-    console.log(item);
     const { exercisesState, dispatchExercises } = useStore();
     const { bodyPart } = exercisesState;
-    console.log(bodyPart);
+
     return (
         <Stack
             type="button"
@@ -26,7 +25,10 @@ const BodyPart = ({ item }) => {
             }}
             onClick={() => {
                 dispatchExercises(setBodyPart(item));
-                window.scrollTo({ top: 1800, left: 100, behaviour: "smooth" })
+                const element = document.getElementById('exercises');
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
             }}
         >
             <img

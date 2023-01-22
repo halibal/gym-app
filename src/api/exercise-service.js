@@ -11,7 +11,7 @@ export const getAllBodyParts = () => {
     return axios.get(`${settings.apiURL}/bodyPartList`, { headers: authHeader() })
 };
 
-export const getByBodyPart = (bodyPart) => {
+export const getExercisesByBodyPart = (bodyPart) => {
     return axios.get(`${settings.apiURL}/bodyPart/${bodyPart}`, { headers: authHeader() });
 };
 
