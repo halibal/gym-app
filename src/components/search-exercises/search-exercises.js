@@ -7,7 +7,8 @@ import { setBodyParts, setExercises } from '../../context/exercises/exercises-ac
 
 const SearchExercises = () => {
     const [search, setSearch] = useState("");
-    const { dispatchExercises } = useStore();
+    const { dispatchExercises, exercisesState } = useStore();
+    const { bodyParts } = exercisesState;
 
     const loadBodyParts = async () => {
         try {
@@ -20,6 +21,7 @@ const SearchExercises = () => {
 
     useEffect(() => {
         loadBodyParts();
+        // eslint-disable-next-line
     }, []);
 
     const handleSearch = async () => {
@@ -96,10 +98,10 @@ const SearchExercises = () => {
                 sx={{
                     position: 'relative',
                     width: "100%",
-                    p: "20px"
+                    p: "20px",
                 }}
             >
-                <HorizontalScrollbar />
+                <HorizontalScrollbar isBodyParts={true} data={bodyParts} />
             </Box>
         </Stack>
     )
