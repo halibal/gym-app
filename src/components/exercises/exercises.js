@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Pagination from '@mui/material/Pagination';
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, CircularProgress, Stack, Typography } from '@mui/material';
 import { useStore } from '../../context/store-context';
 import { ExerciseCard } from '../';
 import { getAllExercises, getExercisesByBodyPart } from '../../api/exercise-service';
@@ -53,7 +53,7 @@ const Exercises = () => {
             mt="50px"
             p="20px"
         >
-            <Typography variant='h3' mb={4}>
+            <Typography variant='h3' mb={10} textAlign="center">
                 Showing Results
             </Typography>
             <Stack
@@ -63,9 +63,11 @@ const Exercises = () => {
                 justifyContent="center"
             >
                 {
-                    currentExercises.map((exercise, index) => (
-                        <ExerciseCard key={index} exercise={exercise} />
-                    ))
+                    currentExercises.length
+                        ? currentExercises.map((exercise, index) => (
+                            <ExerciseCard key={index} exercise={exercise} />
+                        ))
+                        : <CircularProgress color='secondary' />
                 }
             </Stack>
             <Stack
